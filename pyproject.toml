@@ -11,9 +11,10 @@ dependencies = [
     "plotnine>=0.14.4",
 ]
 
-[project.optional-dependencies]
-jupyter = [
-    "notebook>=7.3.2",
+[dependency-groups]
+dev = [
+    "marimo>=0.16.5",
+    "ruff>=0.14.0",
 ]
 
 [project.urls]
