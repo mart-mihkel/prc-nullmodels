@@ -1,17 +1,16 @@
 import marimo
 
-__generated_with = "0.16.5"
+__generated_with = "0.17.6"
 app = marimo.App()
 
 
 @app.cell
 def _():
     import numpy as np
-    import pandas as pd
+    import polars as pl
 
     from nullmodels import geom_pr_hypergeom
     from plotnine import ggplot, aes, geom_point, ggtitle, theme_bw
-
     return (
         aes,
         geom_point,
@@ -19,15 +18,15 @@ def _():
         ggplot,
         ggtitle,
         np,
-        pd,
+        pl,
         theme_bw,
     )
 
 
 @app.cell
-def _(aes, geom_point, geom_pr_hypergeom, ggplot, ggtitle, np, pd, theme_bw):
-    random_noise = pd.DataFrame(
-        np.random.uniform(0.5, 1, (10, 2)), columns=["precision", "recall"]
+def _(aes, geom_point, geom_pr_hypergeom, ggplot, ggtitle, np, pl, theme_bw):
+    random_noise = pl.DataFrame(
+        np.random.uniform(0.5, 1, (10, 2)), schema=["precision", "recall"]
     )
 
     (

@@ -1,24 +1,23 @@
 import marimo
 
-__generated_with = "0.16.5"
+__generated_with = "0.17.6"
 app = marimo.App()
 
 
 @app.cell
 def _():
     import numpy as np
-    import pandas as pd
+    import polars as pl
 
     from nullmodels import pr_quantile_hypergeom
     from plotnine import ggplot, aes, geom_line, ggtitle, theme_bw
-
     return (
         aes,
         geom_line,
         ggplot,
         ggtitle,
         np,
-        pd,
+        pl,
         pr_quantile_hypergeom,
         theme_bw,
     )
@@ -31,7 +30,7 @@ def _(
     ggplot,
     ggtitle,
     np,
-    pd,
+    pl,
     pr_quantile_hypergeom,
     theme_bw,
 ):
@@ -39,7 +38,7 @@ def _(
     p_ub, r_ub, th = pr_quantile_hypergeom(n, q=0.9)
     p_lb, r_lb, _ = pr_quantile_hypergeom(n, q=0.1)
 
-    df = pd.DataFrame(
+    df = pl.DataFrame(
         {
             "Precision": np.concatenate((p_ub, p_lb)),
             "Recall": np.concatenate((r_ub, r_lb)),

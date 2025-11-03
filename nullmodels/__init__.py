@@ -1,7 +1,7 @@
 import scipy
 import plotnine
 import numpy as np
-import pandas as pd
+import polars as pl
 
 from typing import Literal
 
@@ -59,7 +59,7 @@ def geom_pr_simulate(
 
         return plotnine.geom_step(
             mapping=plotnine.aes("recall", "precision"),
-            data=pd.DataFrame({"precision": p, "recall": r}),
+            data=pl.DataFrame({"precision": p, "recall": r}),
             **kwargs,
         )
     else:
@@ -70,7 +70,7 @@ def geom_pr_simulate(
         grp = np.repeat(np.arange(n_sim), n_samp)
         return plotnine.geom_step(
             mapping=plotnine.aes("recall", "precision", group="group"),
-            data=pd.DataFrame({"precision": p, "recall": r, "group": grp}),
+            data=pl.DataFrame({"precision": p, "recall": r, "group": grp}),
             **kwargs,
         )
 
@@ -118,7 +118,7 @@ def geom_pr_hypergeom(
     elif plot_smoothing == "precision-envelope":
         p, r = precision_envelope(p, r)
 
-    df = pd.DataFrame({"precision": p, "recall": r})
+    df = pl.DataFrame({"precision": p, "recall": r})
     return plotnine.geom_step(
         mapping=plotnine.aes("recall", "precision"), data=df, **kwargs
     )

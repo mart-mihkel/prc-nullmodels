@@ -5,14 +5,16 @@ description = "Nullmodel precision-recall curve simulations"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "numpy>=2.2.1",
-    "scipy>=1.15.1",
-    "pandas>=2.2.3",
     "plotnine>=0.14.4",
+    "polars>=1.35.1",
+    "marimo>=0.17.6",
+    "scipy>=1.15.1",
+    "numpy>=2.2.1",
 ]
 
 [dependency-groups]
 dev = [
+    "pyarrow>=22.0.0",
     "marimo>=0.16.5",
     "ruff>=0.14.0",
 ]
